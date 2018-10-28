@@ -34,6 +34,7 @@ def preprocess_for_train(image, height, width, bbox):
 
     # 将随机截取的图片调整为神经网络输入层的大小。
     distorted_image = tf.image.resize_images(distorted_image, [height, width], method=np.random.randint(4))
+    distorted_image.set_shape([299,299,3])
     distorted_image = tf.image.random_flip_left_right(distorted_image)
     distorted_image = distort_color(distorted_image, np.random.randint(2))
     return distorted_image
